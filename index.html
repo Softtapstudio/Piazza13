@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You 💖</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="overlay"></div>
+
+<!-- SCREEN 1 -->
+<div class="screen active" id="screen1">
+  <h2>Hey... someone has something for you 💌</h2>
+  <button onclick="nextScreen(2)">Open it 👀</button>
+</div>
+
+<!-- SCREEN 2 -->
+<div class="screen" id="screen2">
+  <h2>Are you ready? 😉</h2>
+  <button onclick="nextScreen(3)">Yes 💖</button>
+  <button id="noBtn" onclick="moveNo()">No 😒</button>
+  <p id="noText"></p>
+</div>
+
+<!-- SCREEN 3 -->
+<div class="screen" id="screen3">
+  <h2>This is from someone who loves you 💖</h2>
+  <button onclick="nextScreen(4)">Continue ➡️</button>
+</div>
+
+<!-- SCREEN 4 -->
+<div class="screen" id="screen4">
+  <video id="media" autoplay muted loop playsinline>
+    <source src="images/video1.mp4" type="video/mp4">
+  </video>
+
+  <p id="message" class="story-text"></p>
+
+  <button onclick="nextMedia()">Next ➡️</button>
+</div>
+
+<!-- SCREEN 5 -->
+<div class="screen" id="screen5">
+
+  <div class="card-container">
+    <img src="images/photo1.JPG" class="card c1">
+    <img src="images/photo2.JPG" class="card c2">
+    <img src="images/photo3.JPG" class="card c3">
+    <img src="images/photo4.JPG" class="card c4">
+    <img src="images/photo5.JPG" class="card c5">
+    <img src="images/photo6.JPG" class="card c6">
+  </div>
+
+  <div class="overlay-dark"></div>
+
+  <div class="final-content">
+    <h1>Happy Birthday 💖🎂</h1>
+
+    <p id="finalText">
+      From the moment you came into my life, everything changed in the most beautiful way.<br><br>
+      You are my happiness, my peace, and my favorite person in this world.<br><br>
+      Every moment with you is special, and I’m so grateful to have you.<br><br>
+      I hope your day is filled with love, smiles, and everything you deserve 💕
+    </p>
+  </div>
+
+  <button onclick="restart()">Replay 🔁</button>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
