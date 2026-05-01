@@ -1,0 +1,341 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  color: white;
+  overflow: hidden;
+  background: black;
+}
+
+/* BACKGROUND */
+.bg {
+  position: fixed;
+  inset: 0;
+  background: url("images/photo2.JPG") center/cover no-repeat;
+
+  filter: blur(10px);
+  transform: scale(1.05); /* prevents blur edges */
+
+  z-index: -2;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4); /* softer than before */
+  backdrop-filter: blur(2px); /* subtle glass effect */
+  z-index: -1;
+}
+
+/* SECTION */
+.section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.active {
+  opacity: 1;
+  transform: scale(1);
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* TEXT */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 1s;
+}
+.fade.show { opacity:1; transform:none; }
+
+.caption {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.6s;
+}
+.caption.show { opacity:1; transform:none; }
+
+/* MEDIA */
+.photo, video {
+  max-width: 80%;
+  border-radius: 15px;
+}
+
+/* SCROLL HINT */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+}
+.arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(45deg);
+  animation: bounce 1.5s infinite;
+}
+@keyframes bounce {
+  50% { transform: rotate(45deg) translateY(10px); }
+}
+
+/* ENVELOPE */
+.envelope {
+  width: 140px;
+  height: 90px;
+  position: relative;
+  cursor: pointer;
+}
+.body {
+  background: linear-gradient(#ff8fab,#ff4d6d);
+  height:100%;
+  border-radius:8px;
+}
+.flap {
+  position:absolute;
+  width:100%;
+  height:50%;
+  background:#ff4d6d;
+  transform-origin:top;
+  transition:0.6s;
+}
+.envelope.open .flap {
+  transform: rotateX(160deg);
+}
+
+/* BUTTONS */
+.open-btn, .no-btn {
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  margin:5px;
+  cursor:pointer;
+}
+.open-btn { background:#ff4d6d; }
+.no-btn { background:#333; }
+
+/* REVEAL */
+.reveal-heart {
+  font-size:60px;
+  opacity:0;
+  transform:scale(0.5);
+  transition:0.6s;
+}
+.reveal-heart.show {
+  opacity:1;
+  transform:scale(1.2);
+}
+
+.hidden-text {
+  opacity:0;
+  transition:0.8s;
+}
+.hidden-text.show { opacity:1; }
+
+/* FINAL */
+.card-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+.card {
+  position:absolute;
+  width:90px;
+  border-radius:12px;
+  opacity:0;
+  z-index: 1;
+}
+
+@keyframes dropCard {
+  from { transform:translateY(-200px); opacity:0; }
+  to { transform:translateY(0); opacity:1; }
+}
+
+.float {
+  animation: float 4s infinite alternate ease-in-out;
+}
+@keyframes float {
+  to { transform:translateY(-10px); }
+}
+
+.final h1, .final-text {
+  text-shadow: 0 0 20px pink;
+}
+
+.section {
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  text-align: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.section h1,
+.section p {
+  max-width: 90%;
+}
+
+.final h1,
+.final-text {
+  position: relative;
+  z-index: 2;
+}
+
+.choices {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.section.active .fade,
+.section.active .caption {
+  transition-delay: 0.2s;
+}
+
+.interact .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  width: 100%;
+}
+
+.envelope {
+  margin: 0 auto;
+}
+
+.envelope {
+  transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+  transform: scale(1.05);
+}
+
+.final-overlay {
+  position: fixed;   /* 👈 THIS IS THE KEY */
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.10);
+  backdrop-filter: blur(3px);
+
+  z-index: 3;
+}
+
+.final-overlay h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.final-text {
+  max-width: 85%;
+  opacity: 0.9;
+}
+
+.final-overlay {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 1s ease;
+}
+
+.section.active.final .final-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stitch {
+  width: 120px;
+  max-width: 60%;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+
+  animation: stitchFloat 3s ease-in-out infinite;
+}
+
+@keyframes stitchFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.stitch {
+  animation:
+    stitchIntro 0.8s ease,
+    stitchFloat 3s ease-in-out infinite;
+}
+
+@keyframes stitchIntro {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.bg {
+  animation: bgMove 20s ease-in-out infinite alternate;
+}
+
+@keyframes bgMove {
+  from { transform: scale(1.05); }
+  to { transform: scale(1.12); }
+}
+
+button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:hover {
+  box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
+}
+
+.final-overlay h1 {
+  letter-spacing: 0.5px;
+}
+
+.final-text {
+  line-height: 1.5;
+}
